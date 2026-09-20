@@ -1,0 +1,4 @@
+SmartCare v0.3 skeleton
+Patient: P001
+Practitioner: PR001
+Appointment status: scheduled
