@@ -273,7 +273,7 @@ The AI suggestions were used to review the model, but the requirements remained 
 
 ## G. Python Skeletons
 
-The approved domain model was represented in `smartcare_v03.py`.
+The approved domain model was represented in `smartcare_skeleton_week6.py`.
 
 The Python file contains skeletons for:
 

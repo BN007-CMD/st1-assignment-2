@@ -206,6 +206,6 @@ The main relationships are:
 
 The model is based on the confirmed requirements from Stage 2 and avoids adding unsupported functionality.
 
-The Python implementation in `smartcare_v03.py` will use the same classes, attributes and operations shown in the UML diagram.
+The Python implementation in `smartcare_skeleton_week6.py` will use the same classes, attributes and operations shown in the UML diagram.
 
 Working validation, duplicate booking checks and appointment status transitions are not implemented in Stage 3. These behaviours will be addressed during Stage 4.
