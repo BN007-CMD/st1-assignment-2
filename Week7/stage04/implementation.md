@@ -122,8 +122,7 @@ This reflects the Stage 4 requirement for protected state transitions and does n
 
 The updated UML is stored as:
 
-![SmartCare v 0.4 UML class diagram]
-(UML_v04.png)
+![SmartCare v 0.4 UML class diagram](UML_v04.png)
 
 The updated diagram reflects the actual Stage 4 Python implementation, including:
 
