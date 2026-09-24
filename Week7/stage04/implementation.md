@@ -44,6 +44,7 @@ An invariant is a rule that should remain true for an object while it is in a va
 | `Practitioner` | Practitioner availability must contain a value when supplied or updated. | The constructor and `update_availability()` validate the availability value. |
 | `Appointment` | Appointment status can only change through the allowed domain operation. | Status is stored in private `_status` state and exposed through a read-only `status` property. |
 | `Appointment` | A cancelled appointment cannot be cancelled again. | `cancel()` checks the current status and raises `InvalidAppointmentStateError` if it is already cancelled. |
+| `Appointment` | An appointment must be created with a valid `AppointmentStatus`. New appointments are created as `SCHEDULED` by the calling code. | The constructor rejects any value that is not an `AppointmentStatus`. The initial value is supplied by the caller rather than defaulted, so that Stage 4 does not assume the full set of statuses, which Stage 2 recorded as an open question. |
 
 These invariants make the Stage 4 encapsulation requirements concrete. The classes do not simply store data. They also protect important parts of their own state.
 
@@ -121,7 +122,8 @@ This reflects the Stage 4 requirement for protected state transitions and does n
 
 The updated UML is stored as:
 
-`UML_v04.png`
+![SmartCare v 0.4 UML class diagram]
+(UML_v04.png)
 
 The updated diagram reflects the actual Stage 4 Python implementation, including:
 

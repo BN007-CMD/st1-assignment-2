@@ -2,20 +2,21 @@ from enum import Enum
 
 
 class AppointmentStatus(Enum):
-    
+    """Represent the status of a SmartCare appointment."""
 
     SCHEDULED = "scheduled"
     CANCELLED = "cancelled"
 
 
 class InvalidAppointmentStateError(Exception):
-    pass
-    
+    """Raised when an appointment status transition is not permitted."""
+
 
 class Patient:
-    
+    """Represent a patient record (FR-01, FR-02, FR-03)."""
+
     def __init__(self, patient_id: str, patient_information: str) -> None:
-        
+        """Create a patient record, rejecting missing required values."""
         if not patient_id.strip():
             raise ValueError("Patient ID cannot be empty.")
 
@@ -26,7 +27,7 @@ class Patient:
         self.patient_information = patient_information
 
     def update_information(self, patient_information: str) -> None:
-        
+        """Update the stored patient information after validating it."""
         if not patient_information.strip():
             raise ValueError("Patient information cannot be empty.")
 
@@ -34,7 +35,7 @@ class Patient:
 
 
 class Practitioner:
-    
+    """Represent a practitioner record (FR-04, FR-05, FR-06)."""
 
     def __init__(
         self,
@@ -43,7 +44,7 @@ class Practitioner:
         specialty: str,
         availability: str
     ) -> None:
-        
+        """Create a practitioner record, rejecting missing required values."""
         if not practitioner_id.strip():
             raise ValueError("Practitioner ID cannot be empty.")
 
@@ -62,7 +63,7 @@ class Practitioner:
         self.availability = availability
 
     def update_information(self, name: str, specialty: str) -> None:
-        
+        """Update the practitioner's name and specialty after validating them."""
         if not name.strip():
             raise ValueError("Practitioner name cannot be empty.")
 
@@ -81,7 +82,11 @@ class Practitioner:
 
 
 class Appointment:
-    
+    """Represent an appointment (FR-07 to FR-12).
+
+    The appointment status is protected: it is stored privately and can
+    only be changed through cancel().
+    """
 
     def __init__(
         self,
@@ -90,7 +95,7 @@ class Appointment:
         appointment_time: str,
         status: AppointmentStatus
     ) -> None:
-       
+        """Create an appointment, rejecting a missing time or invalid status."""
         if not appointment_time.strip():
             raise ValueError("Appointment time cannot be empty.")
 
@@ -104,11 +109,16 @@ class Appointment:
 
     @property
     def status(self) -> AppointmentStatus:
-        
+        """Return the current status. Read-only: there is no public setter."""
         return self._status
 
     def cancel(self) -> None:
-        
+        """Cancel a scheduled appointment (FR-10).
+
+        The appointment object is retained so it remains part of the
+        appointment history (FR-11). Raises InvalidAppointmentStateError
+        if the appointment has already been cancelled.
+        """
         if self._status == AppointmentStatus.CANCELLED:
             raise InvalidAppointmentStateError(
                 "Appointment has already been cancelled."
@@ -118,8 +128,7 @@ class Appointment:
 
 
 def main() -> None:
-    
-
+    """Run the four Stage 4 manual behaviour checks required by lab step F."""
     patient = Patient("P001", "Alice Smith")
 
     practitioner = Practitioner(
