@@ -1,6 +1,6 @@
 # SmartCare v0.4 - Stage 4 Lab
 
-## A. Revisit Approved UML
+## A. Revisit  UML
 
 Before implementing the domain classes, the Stage 3 UML and requirements were reviewed.
 

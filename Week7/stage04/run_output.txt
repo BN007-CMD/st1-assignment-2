@@ -1,0 +1,10 @@
+SmartCare v0.4 Stage 4 verification
+Valid objects created successfully
+Patient: P001
+Practitioner: Dr John Doe
+Appointment status: scheduled
+Invalid input rejected
+Scheduled appointment cancelled
+Appointment object retained
+Appointment status: cancelled
+Second cancellation attempt rejected
